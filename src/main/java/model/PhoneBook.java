@@ -1,6 +1,7 @@
 package model;
 
 import data.DataSource;
+import org.apache.commons.lang3.StringUtils;
 import service.UserServiceImpl;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,6 +26,8 @@ public class PhoneBook {
                 switch (choice) {
                     case "1":
                         //LIST ALL CONTACTS + EDIT CONTACT SUB-MENU
+
+                        showHeader();
                         userService.getContacts(contactSet);
                         System.out.println();
                         System.out.println("Press 'E' if you want to edit a contact.");
@@ -38,7 +41,7 @@ public class PhoneBook {
                             userService.editContact(extractedContact);
                         } else if (userChoice.equalsIgnoreCase("b")) {
                         } else {
-                            System.out.println("Wrong input!");
+                            System.out.println("Wrong input! Please try again.");
                         }
                         System.out.println();
                         break;
@@ -59,10 +62,18 @@ public class PhoneBook {
 
                     case "4":
                         //ADD CONTACT
-                        // userService.addContact();
+                        userService.addContact(contactSet);
                         break;
 
                     case "5":
+                        //REMOVE CONTACT
+                        System.out.println("Which contact do you want to remove?");
+                        System.out.println("Please type the contact's first name.");
+                        extractedContact = userService.searchContactByFirstName(contactSet);
+                        userService.removeContact(extractedContact, contactSet);
+                        break;
+
+                    case "6":
                         System.exit(0);
                         break;
 
@@ -86,7 +97,8 @@ public class PhoneBook {
         System.out.println("|    2. List favorites     |");
         System.out.println("|    3. Search contact     |");
         System.out.println("|    4. Add contact        |");
-        System.out.println("|    5. Exit               |");
+        System.out.println("|    5. Remove contact     |");
+        System.out.println("|    6. Exit               |");
         System.out.println();
     }
 
@@ -112,5 +124,13 @@ public class PhoneBook {
 
     }
 
+    private void showHeader() {
+        System.out.println(StringUtils.center("  FIRST NAME", 15, " ") +
+                StringUtils.center("  LAST NAME", 16, " ") +
+                StringUtils.center(" PHONE NUMBER", 16, " ") +
+         //     StringUtils.center("  COUNTRY CODE", 16, " ") +
+         //     StringUtils.center("  CITY", 16, " ") +
+                StringUtils.center("  COUNTRY", 16, " "));
+    }
 
 }

@@ -1,12 +1,12 @@
 package service;
 
 import enums.Group;
+import model.Address;
 import model.Contact;
 import model.PhoneBook;
-import java.util.InputMismatchException;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.Set;
+import model.PhoneNumber;
+
+import java.util.*;
 
 public class UserServiceImpl implements UserService{
 
@@ -24,13 +24,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addContact(Contact contact, Set<Contact> contactSet) {
-
+    public void addContact(Set<Contact> contactSet) {
+        System.out.println("First name: ");
+        String firstName = sc.next();
+        System.out.println("Last name: ");
+        String lastName = sc.next();
+        System.out.println("Phone number: ");
+        String phoneNumber = sc.next();
+        System.out.println("Country: ");
+        String country = sc.next();
+        contactSet.add(new Contact(firstName,lastName,new PhoneNumber(phoneNumber),new Address(country)));
     }
 
     @Override
     public void removeContact(Contact contact, Set<Contact> contactSet) {
-
+        contactSet.remove(contact);
     }
 
     @Override

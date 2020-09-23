@@ -1,6 +1,8 @@
 package model;
 
 import enums.Group;
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
@@ -35,6 +37,13 @@ public class Contact implements Comparable<Contact>{
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.birthday = birthday;
+    }
+
+    public Contact(String firstName, String lastName,PhoneNumber phoneNumber, Address address ){
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.phoneNumber=phoneNumber;
+        this.address=address;
     }
 
     public String getFirstName() {
@@ -126,17 +135,14 @@ public class Contact implements Comparable<Contact>{
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", group=" + group +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                ", address=" + address +
-                ", company=" + company +
-                ", birthday=" + birthday +
-                ", isFavorite=" + isFavorite +
-                '}';
+        return
+                StringUtils.substring(firstName,0,1) +
+                StringUtils.center(firstName,15," ") +
+                StringUtils.center(lastName,15," ") +
+                StringUtils.center(phoneNumber.getPhoneNumber(),15," ") +
+           //   StringUtils.center(address.getCity(),20," ") +
+                StringUtils.center(address.getCountry(),20," ");
+
     }
 
     @Override

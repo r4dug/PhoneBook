@@ -9,7 +9,7 @@ public interface UserService {
 
     void getFavouriteContact(Set<Contact> contactSet);
 
-    void addContact(Contact contact, Set<Contact> contactSet);
+    void addContact(Set<Contact> contactSet);
 
     void removeContact(Contact contact, Set<Contact> contactSet);
 
