@@ -87,6 +87,9 @@ public class PhoneBook {
                         break;
 
                     case "6":
+                        backupMenu();
+
+                    case "7":
                         System.exit(0);
                         break;
 
@@ -111,7 +114,8 @@ public class PhoneBook {
         System.out.println("|    3. Search contact     |");
         System.out.println("|    4. Add contact        |");
         System.out.println("|    5. Remove contact     |");
-        System.out.println("|    6. Exit               |");
+        System.out.println("|    6. Backup menu        |");
+        System.out.println("|    7. Exit               |");
         System.out.println();
     }
 
@@ -163,6 +167,7 @@ public class PhoneBook {
     private void backupMenu() {
         try {
             showBackupSubMenu();
+            System.out.println();
             System.out.println("Enter an option:");
             byte option = sc.nextByte();
             switch (option) {
