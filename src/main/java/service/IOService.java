@@ -18,9 +18,9 @@ public class IOService {
         String header = reader.readLine();
         while ((line = reader.readLine()) != null) {
             String[] strings = line.split(",");
-            String[] company = strings[4].split("/");
-            String[] phoneNo = strings[5].split("/");
-            String[] address = strings[7].split("/");
+//          String[] company = strings[4].split(",");
+            String[] phoneNo = strings[2].split(",");
+            String[] address = strings[3].split(",");
 
             contactSet.add(new Contact((strings[0]), strings[1],
                     new PhoneNumber(phoneNo[0]),
@@ -41,7 +41,7 @@ public class IOService {
                     for (Contact contact : contactSet) {
                         string +=  contact.getFirstName() + "," + contact.getLastName() +
                                 "," + contact.getPhoneNumber().getPhoneNumber() +
-                                "/" + contact.getAddress().getCountry() + "\n";
+                                "," + contact.getAddress().getCountry() + "\n";
                     }
                     try {
                         Thread.sleep(20000);

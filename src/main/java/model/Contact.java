@@ -39,7 +39,7 @@ public class Contact implements Comparable<Contact>{
         this.birthday = birthday;
     }
 
-    public Contact(String firstName, String lastName,PhoneNumber phoneNumber, Address address ){
+    public Contact(String firstName, String lastName,PhoneNumber phoneNumber, Address address){
         this.firstName=firstName;
         this.lastName=lastName;
         this.phoneNumber=phoneNumber;
