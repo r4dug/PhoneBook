@@ -89,13 +89,18 @@ public class UserServiceImpl implements UserService{
                     System.out.println("Contact's group successfully edited");
                     break;
 
+                case "5":
+                    // return to main menu
+                    PhoneBook.showMainMenu();
+                    editContact(contact);
+
                 default:
-                    System.out.println("Invalid input");
+                    System.out.println("Invalid input. Please choose between [1-5] only!");
                     PhoneBook.showMainMenu();
                     editContact(contact);
             }
         } catch (InputMismatchException inputMismatchException) {
-            System.out.println("Invalid input. Please, choose between [1-9] only!");
+            System.out.println("Invalid input. Please choose between [1-9] only!");
             sc = new Scanner(System.in);
             PhoneBook.showMainMenu();
             editContact(contact);

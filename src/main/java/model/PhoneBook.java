@@ -32,6 +32,7 @@ public class PhoneBook {
 
     public void initiateMenu() {
         do {
+            System.out.println();
             showMainMenu();
             try {
                 String choice = sc.next();
@@ -44,6 +45,7 @@ public class PhoneBook {
                         userService.getContacts(contactSet);
                         System.out.println();
                         System.out.println("Press 'E' if you want to edit a contact.");
+                        System.out.println("Press 'F' to mark a contact as FAVORITE.");
                         System.out.println("Press 'B' to go back to the main menu.");
                         String userChoice = sc.next();
                         if (userChoice.equalsIgnoreCase("e")) {
@@ -53,7 +55,13 @@ public class PhoneBook {
                             showEditSubMenu();
                             userService.editContact(extractedContact);
                         } else if (userChoice.equalsIgnoreCase("b")) {
-                        } else {
+                        } else if (userChoice.equalsIgnoreCase("f")) {
+                            System.out.println("Which contact do you want to set as favorite?");
+                            System.out.println("Please type the contact's first name.");
+                            extractedContact = userService.searchContactByFirstName(contactSet);
+                            extractedContact.setFavorite(true);
+                        }
+                        else {
                             System.out.println("Wrong input! Please try again.");
                         }
                         System.out.println();
@@ -61,6 +69,7 @@ public class PhoneBook {
 
                     case "2":
                         //LIST FAVORITE
+                        showFavoriteContacts();
                         userService.getFavouriteContact(contactSet);
                         break;
 
@@ -137,7 +146,8 @@ public class PhoneBook {
         System.out.println("|  1. Edit contact's first name   |");
         System.out.println("|  2. Edit contact's last name    |");
         System.out.println("|  3. Edit contact's phone number |");
-        System.out.println("|  4. Return to previous menu     |");
+        System.out.println("|  4. Edit contact's group        |");
+        System.out.println("|  5. Return to previous menu     |");
 
     }
 
@@ -150,6 +160,12 @@ public class PhoneBook {
         System.out.println("|  3. Restore previous backup     |");
         System.out.println("|  4. Return to previous menu     |");
 
+    }
+
+    private static void showFavoriteContacts() {
+        System.out.println("===================================");
+        System.out.println("|         FAVORITE CONTACTS       |");
+        System.out.println("===================================");
     }
 
     private void showHeader() {
